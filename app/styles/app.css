@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #efefef;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+}
+/** stack-container is a container which allows its items to be displayed on top of each other **/
+.stack-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.stack-item,
+.stack-container svg {
+  position: absolute;
+}
+/** test library **/
+.ReactTable .rt-thead .rt-resizable-header-content {
+  font-size: 0.8rem;
+}
+.ReactTable .rt-td {
+  font-size: 0.7rem;
+}

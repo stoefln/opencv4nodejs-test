@@ -1,0 +1,105 @@
+{
+  "name": "Repeato",
+  "description": "Easy app UI testing via record and play",
+  "version": "1.0.0",
+  "author": {
+    "name": "Stephan Petzl",
+    "email": "stephan.petzl@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://stoefln@bitbucket.org/stoefln/repeato.git"
+  },
+  "build": {
+    "appId": "app.repeato",
+    "productName": "Repeato",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "files": [
+      "!minicap/*",
+      "!minitouch/*"
+    ],
+    "extraResources": [
+      "minicap/**",
+      "minitouch/**"
+    ],
+    "directories": {}
+  },
+  "scripts": {
+    "electron-rebuild": "electron-rebuild -w opencv4nodejs",
+    "clean": "rm -rf node_modules",
+    "reinstall": "npm run clean && npm install",
+    "start": "concurrently \"npm run start-dev\" \"npm run start-electron\"",
+    "start-dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "start-electron": "cross-env NODE_ENV=development electron index",
+    "build": "npm run dist && npm run build-all",
+    "bundle": "cross-env NODE_ENV=production webpack  --config webpack.production.config.js",
+    "build-all": "build -lmw",
+    "test": "ELECTRON_RUN_AS_NODE=true ./node_modules/.bin/electron ./node_modules/.bin/jest",
+    "prettier": "prettier --write app/**/*.js",
+    "prettier:staged": "pretty-quick --staged",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "npm run bundle && electron-builder --dir",
+    "dist": "npm run bundle && electron-builder"
+  },
+  "keywords": [
+    "android",
+    "UI testing"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@devexpress/dx-react-core": "^1.10.5",
+    "@devexpress/dx-react-grid": "^1.10.5",
+    "@devexpress/dx-react-grid-material-ui": "^1.10.5",
+    "@material-ui/core": "^3.9.1",
+    "@material-ui/icons": "^3.0.2",
+    "classnames": "^2.2.6",
+    "fix-path": "^2.1.0",
+    "lodash": "^4.17.11",
+    "minimist": "^1.2.0",
+    "mobx-state-tree": "^3.10.0",
+    "node-loader": "^0.6.0",
+    "opencv4nodejs": "^4.11.0",
+    "react-image-crop": "^6.0.18",
+    "react-sizeme": "^2.5.2",
+    "rxjs": "^6.3.3",
+    "typeface-roboto": "0.0.54",
+    "ws": "^6.1.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.6.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "electron": "^3.1.1",
+    "electron-builder": "^20.28.4",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-prebuilt-compile": "^3.0.10",
+    "electron-rebuild": "^1.8.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.1",
+    "jest": "^23.6.0",
+    "mobx": "^4.8.0",
+    "mobx-react": "^5.4.3",
+    "mobx-react-devtools": "^6.0.3",
+    "prettier": "^1.16.4",
+    "pretty-quick": "^1.10.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-hot-loader": "^4.6.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
+  }
+}

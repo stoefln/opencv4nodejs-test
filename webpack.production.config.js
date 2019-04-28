@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   entry: {
@@ -38,5 +39,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
-  target: 'electron-renderer'
+  target: 'electron-renderer',
+  externals: [nodeExternals({
+     whitelist: [/^(?!opencv4nodejs).*/i]
+   })],
 }

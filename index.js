@@ -6,6 +6,8 @@ const cv = require('opencv4nodejs')
 const nodeEnv = process.env.NODE_ENV
 const ipc = electron.ipcMain
 
+app.disableHardwareAcceleration()
+
 let win
 
 app.on('ready', () => {

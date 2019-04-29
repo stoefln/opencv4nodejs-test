@@ -16,6 +16,24 @@
     "mac": {
       "category": "public.app-category.developer-tools"
     },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": "false",
+      "allowToChangeInstallationDirectory": "true"
+    },
     "files": [
       "!minicap/*",
       "!minitouch/*"
@@ -42,7 +60,8 @@
     "postinstall": "electron-builder install-app-deps",
     "pack": "npm run bundle && electron-builder --dir",
     "dist": "npm run bundle && electron-builder",
-    "dist2": "npm run bundle && electron-packager . Repeato"
+    "dist2": "npm run bundle && electron-packager . Repeato --ignore='app'",
+    "setup": "./node_modules/.bin/build --prepackaged Repeato-win32-x64"
   },
   "keywords": [
     "android",
@@ -50,7 +69,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "opencv4nodejs": "^4.11.0",
+    "opencv4nodejs": "^4.11.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

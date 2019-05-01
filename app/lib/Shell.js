@@ -38,14 +38,14 @@ export default class Shell {
   static async adbPushFile(filePath1, filePath2, deviceId) {
     console.log('-----adbPushFile', filePath1)
     var appPath = (electron.app || electron.remote.app).getAppPath()
-    if (process.env.NODE_ENV == 'production') {
+    /*if (process.env.NODE_ENV == 'production') {
       // in production mode we need to adapt the path. getAppPath() points to Repeator.app/Contents/Resources/app.asar
       // the files we want to push (minicap and minitouch) are packaged in the Resources dir (Repeator.app/Contents/Resources)
       // thats why we pop-off the app.asar from the path
       const arr = appPath.split('/')
       arr.pop()
       appPath = arr.join(path.sep)
-    }
+    }*/
     filePath1 = appPath + path.sep + filePath1
     filePath1 = filePath1.replace('/', path.sep)
 

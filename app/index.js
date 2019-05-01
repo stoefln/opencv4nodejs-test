@@ -6,7 +6,7 @@ import App from './App'
 import config from './config'
 import { updateStoreToCurrentVersion } from './store-version-migrations'
 import './styles/app.css'
-
+import { Shell } from './lib/Shell'
 
 function renderApp(App) {
   render(<App />, document.getElementById('root'))
@@ -22,5 +22,4 @@ renderApp(App)
 );*/
 
 if (module.hot) {
-  
 }

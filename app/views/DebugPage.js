@@ -9,6 +9,8 @@ import ImageCanvas from '../components/ImageCanvas'
 const { shell } = require('electron')
 const cv = require('opencv4nodejs')
 import fs from 'fs'
+const electron = require('electron')
+const path = require('path')
 
 const styles = theme => ({})
 
@@ -44,7 +46,8 @@ class DebugPage extends Component {
   }
 
   runTests = async () => {
-    const resourceFolder = './app/test/resources/'
+    var appPath = (electron.app || electron.remote.app).getAppPath()
+    const resourceFolder = appPath + path.sep + 'test-resources' + path.sep
     const testCases = [
       {
         templateImage: 'frame-6dbf3486-0395-1967-b6a7-0f6090c82b83-template.png',
@@ -137,12 +140,16 @@ class DebugPage extends Component {
           {testResults.map((item, index) => (
             <div key={index} divider>
               CompressionQuality: {item.compressionQuality}
-              <img onClick={() => shell.openItem(item.templateImagePath)} src={item.templateImagePath} width={50} />
-              <img src={item.frameImagePath} width={50} /> - success: {item.success ? 'true' : 'false'}
+              <img
+                onClick={() => shell.openItem(item.templateImagePath)}
+                src={'file://' + item.templateImagePath}
+                width={50}
+              />
+              <img src={'file://' + item.frameImagePath} width={50} /> - success: {item.success ? 'true' : 'false'}
               <br />
               {item.message}
               <div onClick={() => shell.openItem(item.frameImagePath)}>
-                <ImageCanvas angle={index} matches={item.matches} width={400} src={item.frameImagePath} />
+                <ImageCanvas angle={index} matches={item.matches} width={400} src={'file://' + item.frameImagePath} />
               </div>
             </div>
           ))}

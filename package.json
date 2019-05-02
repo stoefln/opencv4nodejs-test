@@ -60,7 +60,7 @@
     "postinstall": "electron-builder install-app-deps",
     "pack": "npm run bundle && electron-builder --dir",
     "dist": "npm run bundle && electron-builder",
-    "dist2": "npm run bundle && electron-packager . Repeato --ignore='app'",
+    "dist2": "npm run bundle && electron-packager . Repeato --ignore='app' --overwrite",
     "setup": "./node_modules/.bin/build --prepackaged Repeato-win32-x64"
   },
   "keywords": [
